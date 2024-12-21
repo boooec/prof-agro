@@ -1,0 +1,20 @@
+services:
+  tgbot:
+    build:
+      context: .
+      dockerfile: "build/tgbot.Dockerfile"
+    depends_on:
+      - pyapp
+    environment:
+      - TGBOT_TOKEN=$PROF_AGRO_TGBOT_TOKEN
+
+  pyapp:
+    build:
+      context: .
+      dockerfile: "build/pyapp.Dockerfile"
+    ports:
+      - "8080:8080"
+    environment:
+      - GPT_RQUID=$GPT_RQUID
+      - GPT_AUTH_DATA=$GPT_AUTH_DATA
+      - GPT_TOKEN=$GPT_TOKEN

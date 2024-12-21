@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package question_service;
+
+option go_package = "tgbot/internal/proto";
+
+service QuestionProcessor {
+  rpc ProcessQuestion (Request) returns (Response) {}
+}
+
+enum QuestionType {
+  QUESTION_TYPE_UNSPECIFIED = 0;
+  QUESTION_TYPE_QUESTION = 1;
+  QUESTION_TYPE_CHECKLIST = 2;
+}
+
+message Request {
+  string question = 1;
+  QuestionType question_type = 2;
+}
+
+message Response {
+  bytes image = 1;
+  string answer = 2;
+}
